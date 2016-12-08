@@ -1,0 +1,26 @@
+<div class="he-header">
+    <p class="he-header-left">
+        <img src="assets/img/nav_back@3x.png" alt=""/>
+    </p>
+    <p class="he-header-center">健康知识</p>
+</div>
+<div class="ui-tab">
+    <ul class="ui-tab-nav ui-border-b">
+        <li><span class="current" data-type="2">营养知识</span></li>
+        <li><span data-type="3">如何做菜</span></li>
+    </ul>
+    <ul id="health-container" class="ui-tab-answer" style="width:300%">
+    </ul>
+</div>
+<script id="item-template" type="text/template">
+    <li>
+    		<%
+    				_.each(result.data,function(item){
+    		%>
+            <div class="he-heakno-list" data-id="<%=item.id%>">
+                <img src="<%=item.pic%>" alt=""/>
+                <p><%=item.question%> <span><%=item.create_time%></span></p>
+            </div>
+        <% }) %>
+    </li>
+</script>

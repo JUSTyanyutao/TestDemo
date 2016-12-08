@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false" name="jpaCache">
+    <diskStore path="java.io.tmpdir/ehcache"/>
+
+
+    <!-- DefaultCache setting. -->
+    <defaultCache maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="300"
+                  timeToLiveSeconds="600"
+                  overflowToDisk="true"/>
+
+    <cache name="orderCache" maxEntriesLocalHeap="10000" eternal="false"
+           timeToIdleSeconds="30" timeToLiveSeconds="120">
+    </cache>
+</ehcache>

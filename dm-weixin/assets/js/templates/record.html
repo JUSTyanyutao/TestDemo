@@ -1,0 +1,30 @@
+<div class="he-header">
+    <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+    <p class="he-header-center">我的收支</p>
+</div>
+<div id="record-container">
+
+</div>
+<script id="template-record" type="text/template">
+<%
+	var data = data[0];
+%>
+<ul class="he-balpay-list">
+			<%
+				if (_.size(data.list) > 0) {
+					_.each(data.list, function(item) {
+						 var sourceName = item.source == 1 ? "充值"
+						 : (item.source==2 ? "订单消费" : "手工修改");
+             var clsName = item.source == 1 ? "recharge" : "";
+				%>
+    <li>
+        <p class="top"><%=sourceName%>
+					<% if(item.order_sn) { %>
+							(<%=item.order_sn%>)
+					<% } %> <span class="<%=clsName%>"><%=item.money%></span></p>
+        <p class="bottom">余额 <%=item.history_balance.toFixed(2)%> <span>
+					<%=item.create_time%></span></p>
+    </li>
+		<% }) } %>
+</ul>
+</script>

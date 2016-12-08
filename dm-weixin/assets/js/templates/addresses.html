@@ -1,0 +1,43 @@
+<div class="he-header">
+    <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+    <p class="he-header-center">管理收货地址</p>
+</div>
+
+
+<ul class="he-manadd-list addresses-container"></ul>
+
+<div class="he-manadd-add btn-add-address">
+    <button>+添加新地址</button>
+</div>
+
+<script id="address-template" type="text/template">
+<%
+    if (_.size(result.data) > 0) {
+        _.each(result.data, function(item) {
+%>
+            <li class="address-item" data-id="<%=item.id%>">
+                <p class="name"><%=item.consignee%> <span><%=item.mobile%></span></p>
+                <p class="address">
+                <%
+                    if (item.is_default) {
+                %>
+                        <span>[默认]</span>
+                <%
+                    }
+                %>
+                    <%=item.province_name%> 
+                    <%=item.city_name%>
+                    <%=item.district_name%><br />
+                    <%=item.street_address%>
+                </p>
+            </li>
+<%
+        });
+    } else {
+%>
+    <div class="no-address">无收货地址，赶快去添加吧</div>
+<%        
+    }
+%>
+    
+</script>

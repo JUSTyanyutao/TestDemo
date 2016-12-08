@@ -1,0 +1,10 @@
+<?php
+define('IMG_DOMAIN','http://img2.hiker.cn/');
+//cgi程序路径 带反斜杠
+define('CGI_PATH','/htdocs/www/img/');
+
+
+//图片存放文件夹 带反斜杠
+define('WANBAN_FOLDER','/data/');
+
+define('SQUARE','300x300');

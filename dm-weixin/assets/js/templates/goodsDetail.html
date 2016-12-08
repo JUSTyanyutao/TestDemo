@@ -1,0 +1,181 @@
+<div class="he-header">
+    <p class="he-header-left">
+        <img src="assets/img/nav_back@3x.png" alt=""/>
+    </p>
+    <p class="he-header-center">商品详情</p>
+    <p class="he-header-right btn-share">分享</p>
+</div>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+    <%
+        _.each(result.pic_list, function(item) {
+    %>
+        <%
+              if(item.pic != "" && item.pic!=null ){
+                console.log("item.pic " + item.pic);   
+         %>
+             <div class="swiper-slide" ><img style="height:250px" src="<%=item.pic%>"></div>
+        <%
+          }else{
+        %>
+                <div class="swiper-slide" ><img style="height:250px" src="assets/img/placeholder _100x100.png"></div>
+        <%
+          }
+        %>
+    <%
+            });
+    %>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+ 
+<div class="he-marpro-center">
+    <p class="question"><%=result.name%></p>
+    <p class="price"> <span class="local_price">￥<%=result.price%></span> /<%=result.unit%><%=result.unit_name%> 
+            &nbsp;
+
+            <span id="riginal-price" style="display:inline-block">原价￥<%=result. original_price%> /<%=result.unit%><%=result.unit_name%></span> <!--&nbsp; <%=result.merchant_name%>-->
+       
+        </p>
+    <div class="right">
+        <img data-id="<%=result.id%>" class="reduce btn-decrease" src="assets/img/minus@3x.png" alt=""/>
+        <span data-price="<%=result.price%>" class="number number-number"><%=result.shop_cart_count%></span>
+        <img data-id="<%=result.id%>" class="plus btn-increase" src="assets/img/plus_pre@3x.png" alt=""/>
+    </div>
+</div>
+<!--<div class="he-marpro-intro">
+    <%=result.short_intro%>
+</div>-->
+
+<div data-id="<%=result.merchant.id%>" class="he-users-list1 users-bottom btn-merchant" >
+
+    <%
+      if(result.merchant.pic != "" && result.merchant.pic!=null ){
+      
+   %>
+    <div class="left "  ><img  src="<%=result.merchant.pic%>"><%=result.merchant.name.charAt(0)%></div>
+    <%
+      }else{
+    %>
+    <div class="left " class="login" ><img style="width:100%;" src="assets/img/placeholder _100x100.png"><%=result.merchant.name.charAt(0)%></div>
+    <%
+      }
+    %>
+    <div class="top" >
+      <a class="name"><%=result.merchant.name%> —
+        <span class="booth-no"><%=result.merchant.booth_no%></span>
+      </a> 
+      <br/> 
+      <a class="number" style="margin-top:5px">
+        在售商品<span><%=result.merchant.selling_goods_cnt%></span>件 &nbsp;&nbsp;&nbsp;
+        已售<span><%=result.merchant.sold_orders_cnt%></span>单
+
+      </a>
+    </div>
+</div>
+
+
+
+
+<div class="he-marpro-com btn-comment">评论 <span>(<%=result.comment_count%>)</span>
+    <img class="star-right" src="assets/img/right.png" alt=""/>
+    <div class="star-container fl-right">
+        <i class="star <%=(result.score/2 >= 1 ? 'selected' : '')%>"></i>
+        <i class="star <%=(result.score/4 >= 1 ? 'selected' : '')%>"></i>
+        <i class="star <%=(result.score/6 >= 1 ? 'selected' : '')%>"></i>
+        <i class="star <%=(result.score/8 >= 1 ? 'selected' : '')%>"></i>
+        <i class="star <%=(result.score/10 >= 1 ? 'selected' : '')%>"></i>
+    </div>
+</ul>
+</div>
+<div class="he-marprod-center">
+    <ul class="nav nav-pills">
+       
+         <li id="commodity-introduction" style="display:inline-block    " data-target="remark" class="active"
+         ><a data-toggle="tab">商品介绍</a></li>
+    
+       
+        <li id ="nutritive-value" data-target="answer" ><a data-toggle="tab">营养价值</a></li>
+
+    </ul>
+
+    <div class="tab-answer eh-hide">
+        <div class="tab-pane fade in active" id="tc10">
+             <table class="he-marpro-tb ">
+            <%
+                var i = 0;
+                _.each(result.nutrition_collocation_lists, function(item) {
+                    i++;
+                    if (i % 2 == 1) {
+            %>
+                    <tr>
+            <%
+                    }
+            %>
+                    <td class="name"><%=item.name%></td>
+                    <td class="number"><%=item.quantity%></td>
+            <%
+                    if (i % 2 == 0) {
+            %>
+                    </tr>
+            <%
+                    }
+                });
+            %>
+                 <!-- <tr>
+
+                     <td class="name">锡</td>
+                     <td class="number">1.2（毫克）</td>
+                 </tr>
+                 <tr>
+                     <td class="name">热量</td>
+                     <td class="number">1.5（千卡）</td>
+                     <td class="name">锌</td>
+                     <td class="number">0.01（毫克）</td>
+                 </tr>
+                 <tr>
+                     <td class="name">蛋白质</td>
+                     <td class="number">1.8（克）</td>
+                     <td class="name">铁</td>
+                     <td class="number">1.02（毫克）</td>
+                 </tr>
+                 <tr>
+                     <td class="name">维生素A</td>
+                     <td class="number">0.22（毫克）</td>
+                     <td class="name">钙</td>
+                     <td class="number">0.08（毫克）</td>
+                 </tr> -->
+             </table>
+        </div>
+        <div class="tab-pane fade " id="tc20">
+        </div>
+    </div>
+
+    <div class="tab-remark ">
+        <%=result.remark%>
+    </div>
+</div>
+
+<div class="he-marpro-choice">
+    <span data-id="<%=result.merchant_id%>" class="enter btn-merchant">
+        <img src="assets/img/22.png" alt=""/>
+        <p>进入店铺</p>
+    </span>
+    <!-- <span class="collection <%=(result.is_fav == 1 ? 'coll-icon-full' : '')%>">
+        <img src="assets/img/<%=(result.is_fav == 1 ? 'star' : 'xing')%>.png" alt=""/>
+        <p><%=(result.is_fav==1?"取消收藏":"收藏")%></p>
+    </span> -->
+    <!-- <span class="shoppingCart">
+        <img src="assets/img/buy@3x.png" alt=""/>
+        <p>菜篮子</p>
+        <span>8</span>
+    </span> -->
+    <span class="btn-shopping-cart join">
+        菜篮子
+    </span>
+</div>
+
+<div class="mask-question" style="display:none;">
+    <img src="assets/img/share_menu.png" alt=""/>
+</div>

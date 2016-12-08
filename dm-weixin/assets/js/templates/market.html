@@ -1,0 +1,76 @@
+<div class="he-header">
+    <p class="he-header-center">定位</p>
+    <p class="he-header-right btn-cancel-my">取消</p>
+</div>
+<div class="he-indloc-search">
+    <input type="text" id="name" placeholder="输入菜场名称搜索"/>
+    <div class="btn-search">搜 索</div>
+</div>
+<div class="he-indloc-choice">
+    <div>
+        <select class="address" name="province" id="province">
+            <option value="">选择省</option>
+        </select>
+        <!-- 江苏省&nbsp;
+        <img src="assets/img/xiala_icon@3x.png" alt=""/> -->
+    </div>
+    <div>
+        <select class="address" name="city" id="city">
+            <option value="">选择市</option>
+        </select>
+        <!-- 苏州市 &nbsp;
+        <img src="assets/img/xiala_icon@3x.png" alt=""/> -->
+    </div>
+    <div>
+        <select class="address" name="district" id="district">
+            <option value="">选择区</option>
+        </select>
+        <!-- 工业园区&nbsp;
+        <img src="assets/img/xiala_icon@3x.png" alt=""/> -->
+    </div>
+</div>
+<div class="he-indloc">
+    <span class="left">GPS定位</span>
+    <span class="right recommand-market">定位失败，请点击重新加载</span>
+</div>
+
+<div class="history-container"></div>
+<div class="nearby-container"></div>
+
+<script id="tpl-history-market" type="text/template">
+<%
+    if (result.total > 0) {
+%>
+    <p class="he-indloc-question">历史菜场</p>
+    <div class="he-indloc-label">
+<%
+        _.each(result.data, function(item) {
+%>
+            <p class="market-item" data-name="<%=item.name%>" data-id="<%=item.id%>"><%=item.name%></p>
+<%
+        });
+%>
+    </div>
+<%
+    }
+%>
+</script>
+
+<script id="tpl-nearby-market" type="text/template">
+    <p class="he-indloc-question">附近菜场</p>
+    <ul class="he-indloc-footer">
+ <%
+    if (_.size(result.list) <= 0) {
+%>
+        <li>附近无菜场</li>
+<%
+    } else {
+        _.each(result.list, function(item) {
+%>
+            <li class="market-item" data-name="<%=item.name%>" data-id="<%=item.id%>"><%=item.name%> <span></span></li>
+<%
+        });
+    }
+ %>
+    </ul>
+</script>

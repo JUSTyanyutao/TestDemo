@@ -1,0 +1,111 @@
+
+.runningman{
+ 	position: absolute;
+ 	top: 50%;
+ 	left: 50%;
+ 	margin-left: -45px;
+ 	margin-top: -30px;
+    width:90px;
+    height:60px;
+    background:url(../images/test2.png) no-repeat;
+ -webkit-animation: run 300ms steps(1) infinite 0s;
+    -moz-animation: run 300ms steps(1) infinite 0s;
+      -o-animation: run 300ms steps(1) infinite 0s;
+         animation: run 300ms steps(1) infinite 0s;
+  }
+  @-webkit-keyframes run{
+    0%{
+      background-position:0;
+    }
+    50%{
+      background-position:-90px 0;
+    }
+    100%{
+      background-position:-180px 0;
+    }
+    
+  }
+
+
+
+
+.message-error{
+  opacity: 0.7;
+  filter:alpha(opacity=70);
+  width: 200px;
+  border-radius: 5px;
+  height: 2.5em;
+  line-height: 2.5em;
+  text-align: center;
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  margin-left: -100px;
+  background: #151515;
+  color: white;
+  font-size: 0.9em;
+  box-shadow: 2px 2px 3px #858a86;
+  transition: all 2s ease;
+}
+
+.change{
+  opacity: 0;
+  filter:alpha(opacity=0);
+  height: 0;
+}
+
+
+.confirm-popbg{
+  background: #000;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.confirm-popbox{
+  border-radius: 5px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+          transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+     -moz-transform: translate(-50%,-50%);
+       -o-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+    background: white;
+    padding: 1em;
+    width: 11em;
+}
+.confirm-popbox>p,.confirm-popbox>h4{
+  text-align: center;
+  margin: 1em 0;
+}
+.confirm-button-wrap{
+  text-align: center;
+}
+.confirm-button-wrap button{
+  margin-right: 2em;
+  width: 5em;
+  height: 2em;
+  background: #01c942;
+  border-radius: 3px;
+  border: 0;
+  outline: 0;
+  color: white;
+}
+.confirm-button-wrap button:last-child{
+  margin-right: 0;
+}
+
+
+
+.charge-arrow p{
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  color: white;
+  left: 0;
+  top: 50%;
+}

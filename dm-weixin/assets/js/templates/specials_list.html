@@ -1,0 +1,26 @@
+<div class="he-indspe">
+   <div class="he-header">
+    <p class="he-header-left">
+        <img src="assets/img/nav_back@3x.png" alt=""/>
+    </p>
+    <p class="he-header-center">今日特价</p>
+  </div>
+  <ul id="specials-container" class="he-indspe-list">
+  </ul>
+</div>
+<script id="item-template" type="text/template">
+		<%
+				_.each(result.data,function(item){
+		%>
+    <li class="li" data-id="<%=item.goods_id%>">
+        <div class="details">
+            <img  src="<%=item.list_pic%>" alt=""/>
+            <div class="right">
+                <p class="question"><%=item.name%></p>
+                <p class="reference "> 市场参考价：<%=item.original_price.toFixed(2)%>元/<%=item.market_unit%><%=item.market_unit_name%></p>
+                <p class="price"> <span><%=item.special_price.toFixed(2)%>元</span>/<%=item.unit%><%=item.unit_name%></p>
+            </div>
+        </div>
+    </li>
+    <% }) %>
+</script>

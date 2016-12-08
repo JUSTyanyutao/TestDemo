@@ -1,0 +1,128 @@
+
+<div id="merchant" class="he-header">
+     <!--<div style="">
+        <a id="clickMe" href="#001">sfgagegag</a>
+       <a name="001" >1234566</a>
+       <div style="width:100px;height:100px;background-color:red" class="text-click"></div>
+    </div>-->
+    <p class="he-header-left">
+        <img src="assets/img/nav_back@3x.png" alt=""/>
+    </p>
+    <p class="he-header-center"><%=result.name%></p>
+</div>
+
+<div class="he-marshop-top">
+    <%
+        if (result.pic != "" && result.pic != null) {
+    %>
+    <img style="height:250px" src="<%=result.pic%>" alt=""/>
+    <%
+      }else{
+    %>
+    <img style="height:250px" src="assets/img/placeholder _100x100.png" alt=""/>
+    <%
+      }
+    %>
+    
+    <div class="question">
+        <%
+             if (result.avatar_url != "" && result.avatar_url != null) {
+        %>
+            <img class="left" src="<%=result.avatar_url%>" alt=""/>
+        <%
+          }else{
+        %>
+            <img class="left" src="assets/img/placeholder _100x100.png" alt=""/>
+        <%
+          }
+        %>
+        
+        <div class="right">
+           <!--<h4><%=result.name%><span> — <%=result.boothNo%>号摊位</span></h4>-->
+
+            <h4 class="h-left"><%=result.name%></h4> <span class="text-width"> — <%=result.boothNo%>号摊位</span>
+            <div class="collect-container">
+                <button class="<%=result.is_fav==1?'collected':''%> btn-collect"><%=result.is_fav==1?'取消收藏':'收藏店铺'%></button>
+                <!--<p>已有 <i class="collect-number"><%=result.collection_count%></i> 人收藏</p>    -->
+            </div>
+            <p class="address">
+                <%=result.market_name%> 
+
+                <div class="star-container">
+                    <i class="star <%=(result.score/2 >= 1 ? 'selected' : '')%>"></i>
+                    <i class="star <%=(result.score/4 >= 1 ? 'selected' : '')%>"></i>
+                    <i class="star <%=(result.score/6 >= 1 ? 'selected' : '')%>"></i>
+                    <i class="star <%=(result.score/8 >= 1 ? 'selected' : '')%>"></i>
+                    <i class="star <%=(result.score/10 >= 1 ? 'selected' : '')%>"></i>
+                </div>
+                
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="ui-tab ui-tab-top">
+    <ul class="ui-tab-nav ui-border-b">
+        <li class="current">新鲜上市</li>
+        <li>特价商品</li>
+    </ul>
+    <ul class="ui-tab-answer" style="width:300%">
+
+    <%
+        if (_.size(result.new_lists) > 0) {
+    %>
+            <li class="current">
+    <%
+            _.each(result.new_lists, function(item) {
+    %>
+                <div class="he-marshop-details">
+                    <img class="left" src="<%=(item.pic==''||item.pic==null?'assets/img/15.png':item.pic)%>" alt=""/>
+                    <div class="right">
+                        <p class="question"><%=item.goods_name%></p>
+                        <p class="price"><%=item.price.toFixed(2)%>元 <span>/<%=item.unit%><%=item.unit_name%></span></p>
+                        <img class="car" data-id="<%=item.goods_id%>" src="assets/img/Cart@3x.png" alt=""/>
+                    </div>
+                </div>
+    <%
+                });
+    %>
+            </li>
+    <%
+        } else {
+    %>
+            <li><div class="no-goods">暂无新品</div></li>
+    <%
+        }
+    %>
+        
+    <%
+        if (_.size(result.special_lists) > 0) {
+    %>
+        <li>
+        <%
+            _.each(result.special_lists, function(item) {
+        %>
+                <div class="he-marshop-details">
+                    <img class="left" src="<%=(item.pic==''||item.pic==null?'assets/img/15.png':item.pic)%>" alt=""/>
+                    <div class="right">
+                        <p class="question"><%=item.goods_name%></p>
+                        <p class="price"><%=item.price.toFixed(2)%>元 <span>/<%=item.unit%><%=item.unit_name%></span></p>
+                        <img class="car" data-id="<%=item.goods_id%>" src="assets/img/Cart@3x.png" alt=""/>
+                    </div>
+                </div>
+        <%
+                });
+        %>
+        </li>
+    <%
+        } else {
+    %>
+            <li><div class="no-goods">暂无特价商品</div></li>
+    <%
+        }
+    %>
+
+    </ul>
+    
+</div>

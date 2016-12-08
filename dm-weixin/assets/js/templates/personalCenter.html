@@ -1,0 +1,126 @@
+<div class="he-myind-answer" >
+    <div class="he-header">
+        <p class="he-header-center">我的</p>
+        <p class="btn-setting he-header-right">设置</p>
+    </div>
+    <% if ((typeof(loginCode) !== "undefined") && loginCode == 0) { %>
+    <div class="he-myind-top">
+       <img class="left" src="assets/img/my@2x.png" alt=""/>
+       <div class="logged" data-link="<%=loginUrl%>">
+           点此登录
+       </div>
+   </div>
+   <div class="he-myind-center">
+       <div>
+           <p>￥0</p>
+           <span>余额</span>
+       </div>
+       <div>
+           <p>￥0</p>
+           <span>冻结金额</span>
+       </div>
+       <div>
+           <p>0</p>
+           <span>我的积分</span>
+       </div>
+   </div>
+   <% } else { %>
+    <div class="he-myind-top">
+      <% if(result.avatar_url) { %>
+          <img class="left" src="<%=result.avatar_url%>" alt="个人头像"/>
+      <% } else { %>
+          <img class="left" src="assets/img/my@2x.png" alt="默认头像"/>
+      <% } %>
+       <div class="right">
+           <p class="name"><%=result.nick_name%>&nbsp;&nbsp;<i class="level<%=result.member_level%>"></i></p>
+           <p class="autograph"><%=result.signature%></p>
+           <% if(result.member_type == 2) { %>
+           <p class="deliveryman"><img src="assets/img/worker_icon.png" alt=""/> &nbsp;送货员</p>
+           <% } %>
+       </div>
+   </div>
+    <div class="he-myind-center">
+        <div>
+          <a href="#accountBalance">
+              <p>￥<%=result.balance.toFixed(2)%></p>
+              <span>余额</span>
+          </a>
+        </div>
+        <div>
+            <p>￥<%=result.frozen_funds.toFixed(2)%></p>
+            <span>冻结金额</span>
+        </div>
+        <div>
+          <a href="#signin">
+              <p><%=result.points%></p>
+              <span>我的积分</span>
+          </a>
+        </div>
+    </div>
+    <% } %>
+    <div class="he-show-order">
+      <div class="he-myind-order">我的订单</div>
+      <div class="he-myindall-order"><a  href="#order/100">查看全部订单</a></div>
+    </div>
+    
+    <div class="he-myind-state">
+        <div>
+          <a href="#order/2">
+            <i class="left"></i>
+            <p>待配送</p>
+          </a>
+        </div>
+        <div>
+          <a href="#order/3">
+            <i class="center"></i>
+            <p>配送中</p>
+          </a>
+        </div>
+        <div>
+          <a href="#order/4">
+            <i class="right"></i>
+            <p>待收货</p>
+          </a>
+        </div>
+    </div>
+    <ul class="he-myind-list">
+        <% if(typeof(result) !== 'undefined' && result.member_type == 2) { %>
+        <li id="workerOrder">
+            <i class="workerOrder"></i> &nbsp; &nbsp;我的派单
+            <img class="right" src="assets/img/right.png" alt=""/>
+        </li>
+        <% } %>
+        <li id="recharge">
+            <i class="recharge"></i> &nbsp; &nbsp;我要充值
+            <img class="right" src="assets/img/right.png" alt=""/>
+        </li>
+        <li id="record">
+            <i class="collect"></i> &nbsp; &nbsp;我的收支
+            <img class="right" src="assets/img/right.png" alt=""/>
+        </li>
+        <li id="coupon">
+            <i class="coupon"></i> &nbsp; &nbsp;我的优惠券
+            <img class="right" src="assets/img/right.png" alt=""/>
+        </li>
+        <li id="favorites">
+            <i class="collection"></i> &nbsp; &nbsp;我的收藏
+            <img class="right" src="assets/img/right.png" alt=""/>
+        </li>
+    </ul>
+    <ul class="he-myind-list">
+        <li id="health">
+            <i class="healthy"></i> &nbsp; &nbsp;健康知识
+            <img class="right" src="assets/img/right.png" alt=""/>
+        </li>
+    </ul>
+    <ul class="he-myind-list">
+        <li id="aboutus">
+            <i class="about"></i> &nbsp; &nbsp;关于怎么吃
+            <img class="right" src="assets/img/right.png" alt=""/>
+        </li>
+        <li>
+            <i class="contact"></i> &nbsp; &nbsp;联系我们
+            <a href="tel:4008272399">400-827-2399</a>
+        </li>
+    </ul>
+</div>

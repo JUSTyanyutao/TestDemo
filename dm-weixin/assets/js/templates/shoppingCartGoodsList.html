@@ -1,0 +1,48 @@
+<%
+    if (total > 0) {
+%>
+    <div class="basket-infull">
+        <ul class="goods-list">
+<%
+    _.each(data.carts, function(item) {
+
+%>
+            <li>
+                <div class="img-wrap"><img src="<%=item.pic%>" class="img"></div>
+                <div class="basket-answer">
+                    <h4><%=item.goods_name%></h4>
+                    <p><%=item.unit_name%></p>
+                    <div class="price-number">
+                        <p class="price sum-price" data-sum-price="<%=item.sum_price%>">¥<%=item.sum_price.toFixed(2)%></p>
+                        <div class="number">
+                            <span class="number-border btn-sub" data-id="<%=item.goods_id%>">-</span>
+                            <span class="number-number" data-price="<%=item.price%>"><%=item.quantity%></span>
+                            <span class="number-fill btn-plus" data-id="<%=item.goods_id%>">+</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+<%
+        });
+%>
+        </ul>
+        <div class="balance">
+            <p><span class="balance-price">¥<%=data.total_price.toFixed(2)%></span> <span class="peisong">| 满50元免配送费</span></p>
+            <div><button class="button" onclick="window.location.href='balance-payment.html'">去结算</button></div>
+        </div>
+    </div>
+<%
+    } else {
+%>
+    <div class="basket-empty">
+        <div class="empty-bg-icon"></div>
+        <p class="empty-remark">sorry,您的生鲜篮空空如也!</p>
+        <div class="empty-button-wrap">
+            <button>快去选购自己的美食吧!</button>
+        </div>
+    </div>
+<%        
+    }
+%>
+    
+    

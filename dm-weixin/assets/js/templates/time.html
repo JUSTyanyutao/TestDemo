@@ -1,0 +1,53 @@
+<div class="he-header">
+        <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+        <p class="he-header-center">配送时间</p>
+    </div>
+<div class="delivery-times">
+    <div class="today">
+        <img src="assets/img/delivery-time.png">
+        今天是<span id="today"></span><span id="desc"></span>
+    </div>
+    <ul class="delivery-times-lists">
+        
+        
+    </ul>
+</div>
+
+<script id="time-template" type="text/template">
+    <%
+    if (_.size(result.date)) {
+        var weekday = new Array(7);
+        weekday[0] = '周日';
+        weekday[1] = '周一';
+        weekday[2] = '周二';
+        weekday[3] = '周三';
+        weekday[4] = '周四';
+        weekday[5] = '周五';
+        weekday[6] = '周六';
+
+        _.each(result.date, function(item) {
+    %>
+        <li>
+            <div class="neaby-times">
+                <div>
+                    <p><%=item.date_name%></p>
+                    <p><%=weekday[(new Date(item.date)).getDay()]%></p>
+                </div>
+            </div>
+            <div class="occasions">
+                <%
+                    var i = 0;
+                    _.each(item.sections, function(section) {
+                %>
+                        <div class="time-section <%=i == 0 ? 'occasion-border' : ''%>" data-date="<%=item.date%>" data-section="<%=section.sectionTime%>"><span><%=section.sectionTime%></span><i class="choose-icon"></i></div>
+                <%
+                        i++;
+                    });
+                %>
+            </div>
+        </li>
+    <%
+        });
+    }
+    %>
+</script>

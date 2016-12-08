@@ -1,0 +1,78 @@
+<div class="he-header">
+    <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+    <p class="he-header-center menu-question"></p>
+    <p class="he-header-right btn-submit">确定</p>
+</div>
+
+
+<div class="he-party-time">宴会开始时间：<span class="label-start-time"></span></div>
+
+<%
+    _.each(menus, function(category) {
+        if (_.size(category.books) > 0) {
+%>
+    <div class="category-item">
+        <div class="he-party-question"><%=category.name%> <span class="btn-edit red">删除</span></div>
+        <div class="he-party-top">
+    <%
+        _.each(category.books, function(book) {
+    %>
+            <div class="book-item">
+                <img class="top" src="<%=book.pic%>" alt=""/>
+                <span class="center"><%=book.name%></span>
+                <img class="bottom btn-delete" data-id="<%=book.id%>" src="assets/img/delete@3x.png" alt=""/>
+            </div>
+    <%
+        });
+    %>
+            <div class="clear"></div>
+        </div>
+    </div>
+<%
+        }
+    });
+%>
+
+
+<!-- 
+<div class="category-item">
+    <div class="he-party-question">冷菜 <span class="btn-edit red">删除</span></div>
+    <div class="he-party-top">
+        <div class="book-item">
+            <img class="top" src="assets/img/7.png" alt=""/>
+            <span class="center">可乐鸡翅</span>
+            <img class="bottom" src="assets/img/delete@3x.png" alt=""/>
+        </div>
+        <div class="book-item">
+            <img class="top" src="assets/img/6.png" alt=""/>
+            <span class="center">可乐鸡翅</span>
+            <img class="bottom" src="assets/img/delete@3x.png" alt=""/>
+        </div>
+        <div class="book-item">
+            <img class="top" src="assets/img/5.png" alt=""/>
+            <span class="center">可乐鸡翅</span>
+            <img class="bottom" src="assets/img/delete@3x.png" alt=""/>
+        </div>
+        <div class="clear"></div>
+    </div>
+    
+
+    <div class="he-party-top">
+        <div class="book-item">
+            <img class="top" src="assets/img/7.png" alt=""/>
+            <span class="center">可乐鸡翅</span>
+            <img class="bottom" src="assets/img/delete@3x.png" alt=""/>
+        </div>
+        <div class="book-item">
+            <img class="top" src="assets/img/6.png" alt=""/>
+            <span class="center">可乐鸡翅</span>
+            <img class="bottom" src="assets/img/delete@3x.png" alt=""/>
+        </div>
+        <div class="book-item">
+            <img class="top" src="assets/img/5.png" alt=""/>
+            <span class="center">可乐鸡翅</span>
+            <img class="bottom" src="assets/img/delete@3x.png" alt=""/>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div> -->

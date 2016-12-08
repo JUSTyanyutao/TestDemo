@@ -1,0 +1,29 @@
+<div class="he-header">
+    <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+    <p class="he-header-center">账户充值</p>
+</div>
+<div class="he-myrech-question">账户余额 <span><em id="userBalance">---</em> 元</span></div>
+<div class="he-myrech-money">
+    <%  var i = 0;  _.each(result.list, function(item){
+        var className = (i++ == 0) ? "selected" : "";
+    %>
+    <div class="<%=className%>" data-desc="<%=item.desc%>" data-money="<%=item.money%>"><%=item.money%>元</div>
+    <% }) %>
+    <div data-desc="" data-money="0">其他金额</div>
+</div>
+<div class="he-myrech-recharge eh-hide">
+  充值金额 <input type="text" id = "recharge_money" placeholder="请输入你要充值的金额" value="100"/>
+</div>
+<div class="he-myrech-recharge-give"></div>
+<ul class="he-myrech-payment">
+    <li class="question">付款方式</li>
+    <li class="default choice" data-payment-type="1">
+        <img class="left" src="assets/img/weixin@31x.png" alt=""/>
+        <span>微信支付</span>
+    </li>
+    <li class="default" data-payment-type="2">
+        <img  class="left" src="assets/img/zhifubao@3x.png" alt=""/>
+        <span>支付宝支付</span>
+    </li>
+</ul>
+<button class="he-myrech-btn"> 确认充值</button>

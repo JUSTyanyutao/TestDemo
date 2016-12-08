@@ -1,0 +1,22 @@
+<div class="he-header he-inddet-header">
+    <p class="he-header-left">
+       <img src="assets/img/arrow_left.png" alt=""/>
+    </p>
+    <p class="he-header-center">活动详情</p>
+</div>
+<div id="activity-detail-container">
+</div>
+<script id="detail-template" type="text/template">
+      <div class="he-inddet-answer">
+          <img src="<%=result.detail_pic%>" alt=""/>
+          <div class="preferential">
+              <p class="top"><%=result.question%></p>
+              <p class="center">————</p>
+              <p class="bottom"><%=result.short_intro%></p>
+              <p class="titme"><%=result.create_time%></p>
+          </div>
+      </div>
+      <div class="he-inddet-footer">
+          <%=result.answer%>
+      </div>
+</script>

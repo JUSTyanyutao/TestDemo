@@ -1,0 +1,152 @@
+<div class="he-header">
+    <p class="he-header-center">
+      <span class="location">
+        <img src="assets/img/nav_GPS@3x.png" alt=""/>
+        <span class=" current-location">定位菜场</span>
+      </span>
+    </p>
+    <p class="he-header-right btn-search searching"></p>
+</div>
+<!-- 轮播图 -->
+<div class="banner-wrap swiper-container">
+    <div class="swiper-wrapper">
+    <%
+        if(carousels && carousels.length > 0) {
+            _.each(carousels,function(item){
+                var picUrl =  item.pic;
+    %>
+            <div class="swiper-slide" data-href="<%=item.link%>">
+                <img src="assets/img/banner_bg.png" data-echo="<%=picUrl%>" class="banner">
+            </div>
+    <%
+            });
+        }
+        %>
+    </div>
+    <div class="swiper-pagination"></div>
+</div>
+<div class="he-index-question">
+    <div>
+        <a href="#activity">
+          <i class="activity"></i>
+          <p>活动</p>
+        </a>
+    </div>
+
+    <div>
+      <a href="#cooks">
+        <i class="chef"></i>
+        <p>大厨到家</p>
+      </a>
+    </div >
+
+    <div>
+      <a href="#order">
+        <i class="order"></i>
+        <p>订单</p>
+      </a>
+    </div>
+    <div>
+      <a href="#signin">
+          <i class="integral"></i>
+          <p>签到积分</p>
+      </a>
+    </div>
+</div>
+<!-- 今日特价 -->
+<div class="he-index-center">
+    <i class="special "></i> &nbsp;今日特价
+    <span class="more">更多
+        <img src="assets/img/gengduo.png" alt=""/>
+    </span>
+</div>
+<%
+    if (_.size(goodsSpecialsList) > 2) {
+       var gsLeft, gsTop, gsBottom;
+       gsLeft  = _.first(goodsSpecialsList);
+       gsTop = goodsSpecialsList[1];
+       gsBottom = goodsSpecialsList[2];
+%>
+<div class="he-index-list">
+    <img class="left" src="<%=gsLeft.pic%>" data-id="<%=gsLeft.goods_id%>" alt=""/>
+    <img class="top" src="<%=gsTop.pic%>" data-id="<%=gsTop.goods_id%>" alt=""/>
+    <img class="bottom" src="<%=gsBottom.pic%>" data-id="<%=gsBottom.goods_id%>" alt=""/>
+</div>
+<%
+  }
+%>
+<%
+    if (_.size(goodsHotList) > 0) {
+%>
+<!-- 热门 -->
+<div class="he-index-hot">
+    <% _.each(goodsHotList, function(item){%>
+        <a href="#goodsDetail/<%=item.goods_id%>"><img src="assets/images/hot_bg.png" data-echo="<%=item.pic%>"></a>
+    <% }) %>
+</div>
+<%
+    }
+%>
+
+
+<!-- 附近的菜场用户 -->
+<div class="he-users-center ">
+    <i class="special "></i> &nbsp;附近的菜场用户
+    <span class="more green" style="">满49元免运费
+    </span>
+</div> 
+<%
+    if (_.size(nearbyMerchantList) > 0) {
+      var number = 1;
+%>
+
+    <% _.each(nearbyMerchantList, function(item){
+      var page = number%2;
+    %>
+
+<div data-id="<%=item.id%>" class="he-users-list users-bottom btn-merchant" > 
+   <%
+      if(item.pic != "" && item.pic!=null ){
+        console.log("item.pic " + item.pic);
+      
+   %>
+    <div class="left "  ><img style="width:100%;height:101px" src="<%=item.pic%>"></div>
+    <%
+      }else{
+    %>
+    <div class="left " class="login" ><img style="width:100%;" src="assets/img/placeholder _100x100 .png"></div>
+    <%
+      }
+    %>
+    <div class="top" >
+      <a class="name"><%=item.name%> <br/>
+        <span class="booth-market market-name">葑门菜场 </span> 
+        <div class="star-container1 fl-right">
+          <i class="star <%=(item.score/2 >= 1 ? 'selected' : '')%>"></i>
+          <i class="star <%=(item.score/4 >= 1 ? 'selected' : '')%>"></i>
+          <i class="star <%=(item.score/6 >= 1 ? 'selected' : '')%>"></i>
+          <i class="star <%=(item.score/8 >= 1 ? 'selected' : '')%>"></i>
+          <i class="star <%=(item.score/10 >= 1 ? 'selected' : '')%>"></i>
+        </div>
+        <br/> 
+        <a class="number" style="margin-top:5px">
+          在售商品<span><%=item.selling_goods_cnt%></span>件 &nbsp;&nbsp;&nbsp;
+          已售<span><%=item. sold_orders_cnt%></span>单
+
+        </a>
+    </div>
+</div>
+
+    <% 
+    number ++ ;
+    }) %>
+
+<%
+    }
+%>
+<div style=" margin-bottom: 15%;"></div>
+
+
+
+
+

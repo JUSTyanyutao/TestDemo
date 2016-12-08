@@ -1,0 +1,202 @@
+<div id="worker-order-list">
+  <div class="he-header">
+      <p class="he-header-left">
+          <img src="assets/img/nav_back@3x.png" alt=""/>
+      </p>
+      <p class="he-header-center">我的派单</p>
+  </div>
+  <div class="my-order">
+      <div class="my-order-tab">
+          <ul class="order-tab-lists">
+              <li class="width-change4"><span class="order-on" data-status="2">待接单</span></li>
+              <li class="width-change4"><span data-status="3">待配送</span></li>
+              <li class="width-change4"><span data-status="4">配送中</span></li>
+              <li class="width-change4"><span data-status="5">待收货</span></li>
+              <!-- <li class="width-change5"><span data-status="6">已完成</span></li> -->
+          </ul>
+      </div>
+      <div class="answer all-orders-answer">
+           <!--待接单-->
+          <div class="childcontent" style="display:block;"></div>
+          <!--待配送-->
+          <div class="childcontent"></div>
+          <!--配送中-->
+          <div class="childcontent"></div>
+           <!--待收货-->
+          <div class="childcontent"></div>
+      </div>
+  </div>
+</div>
+<div id="worker-order-detail"></div>
+<script id="worker-order-list-template" type="text/template">
+  <% if(_.size(data) > 0) {
+       _.each(data,function(item){
+   %>
+  <div class="order" data-id="<%=item.id%>">
+      <div class="he-myorder-question">
+          <div></div>订单号：<%=item.order_sn%>
+          <span><%=item.order_status_name%></span>
+      </div>
+      <%
+          if(item.order_cook){
+            var orderCook = item.order_cook;
+       %>
+      <div class="he-myorder-details" data-type = "2" data-thumb="<%=orderCook.avatar_url%>" data-id="<%=orderCook.cook_id%>" data-name="<%=orderCook.cook_name%>">
+          <img class="left" src="<%=orderCook.avatar_url%>" alt=""/>
+          <div class="right">
+              <p class="question"><%=orderCook.cook_name%></p>
+              <p class="center">
+                <span class="price">￥<%=orderCook.price%></span>
+                <span class="number">/ <%=orderCook.quantity%><%=orderCook.unit%></span>
+              </p>
+              <p class="bottom"> 合计：￥<%= (orderCook.price * orderCook.quantity).toFixed(2) %>
+              </p>
+          </div>
+      </div>
+      <% } %>
+      <%
+           _.each(item.order_bizs,function(orderBiz){
+       %>
+      <div class="he-myorder-name">
+          <img class="left" src="assets/img/22.png" alt=""/>
+          <span class="name"><%=orderBiz.merchant_name%></span>
+          <span class="right">订单号：<%=orderBiz.biz_order_sn%></span>
+      </div>
+      <%
+           _.each(orderBiz.goods,function(goods){
+       %>
+      <div class="he-myorder-details">
+          <img class="left" src="<%=goods.thumb%>" alt=""/>
+          <div class="right">
+              <p class="question"><%=goods.name%><span>x<%=goods.quantity%></span></p>
+              <p class="center">
+                <span class="price">￥<%=goods.price%></span>
+                <span class="number">/ <%=goods.unit%><%=goods.unit_name%></span>
+              </p>
+              <p class="bottom"> 合计：￥<%= (goods.price * goods.quantity).toFixed(2) %>
+          </div>
+      </div>
+      <% }) }) %>
+      <p class="he-myorder-total">
+          合计：￥<%=item.paid_money%>
+          <% if(item.delivery_status == 2) { %>
+            <button class="btn btn-active f-rt btn-accept-order">接单</button>
+          <% } else if(item.delivery_status == 3) {  %>
+            <button class="btn btn-default f-rt btn-manual-delivery">手动派单</button>
+            <button class="btn btn-active f-rt btn-scancode-delivery">扫码派单</button>
+          <% } else if(item.delivery_status == 4) {  %>
+            <button class="btn btn-active f-rt btn-complete-delivery">完成派单</button>
+          <% } %>
+      </p>
+  </div>
+  <% }) } else { %>
+    <div class="childcontent" style="display:block;">
+        <div class="common-bg-wrap">
+            <img src="assets/img/noorder.png" class="common-bg-img">
+            <h4 class="common-bg-question">订单空空如也~</h4>
+            <p class="common-bg-text">稍安勿躁, 还没有新的订单派给您!</p>
+        </div>
+    </div>
+<% } %>
+ </script>
+ <script id="worker-order-detail-template" type="text/template">
+   <div class="he-header">
+       <p class="he-header-back">
+           <img src="assets/img/nav_back@3x.png" alt=""/>
+       </p>
+       <p class="he-header-center">派单详情</p>
+   </div>
+   <div class="order">
+     <div class="my-order-tab">
+       <ul id="order-detail-tab" class="order-tab-lists">
+            <li class="width-change2"><span class="order-on">订单详情</span></li>
+            <li class="width-change2"><span>物流状态</span></li>
+        </ul>
+      </div>
+      <div class="content2">
+           <div class="childcontent2">
+               <div class="he-orderdet-data">
+                   <p> <span>送货地址：</span><%=address%></p>
+                   <p> <span>手机号码：</span><%=mobile%></p>
+                   <p> <span>订单编号：</span><%=order_sn%></p>
+                   <p> <span>下单时间：</span><%=create_time%></p>
+               </div>
+               <div class="he-myorder-question">
+                   <div></div>订单号：<%=order_sn%>
+                   <span><%=order_status_name%></span>
+               </div>
+               <%
+                   if(order_cook){
+                     var orderCook = order_cook;
+                %>
+               <div class="he-myorder-details" data-type = "2" data-thumb="<%=orderCook.avatar_url%>" data-id="<%=orderCook.cook_id%>" data-name="<%=orderCook.cook_name%>">
+                   <img class="left" src="<%=orderCook.avatar_url%>" alt=""/>
+                   <div class="right">
+                       <p class="question"><%=orderCook.cook_name%></p>
+                       <p class="center">
+                         <span class="price">￥<%=orderCook.price%></span>
+                         <span class="number">/ <%=orderCook.quantity%><%=orderCook.unit%></span>
+                       </p>
+                       <p class="bottom"> 合计：￥<%= (orderCook.price * orderCook.quantity).toFixed(2) %>
+                   </div>
+               </div>
+               <% } %>
+               <%
+                    _.each(order_bizs,function(orderBiz){
+                %>
+               <div class="he-myorder-name">
+                   <img class="left" src="assets/img/22.png" alt=""/>
+                   <span class="name"><%=orderBiz.merchant_name%></span>
+                   <span class="right">订单号：<%=orderBiz.biz_order_sn%></span>
+               </div>
+               <%
+                    _.each(orderBiz.goods,function(goods){
+                %>
+               <div class="he-myorder-details">
+                   <img class="left" src="<%=goods.thumb%>" alt=""/>
+                   <div class="right">
+                       <p class="question"><%=goods.name%><span>x<%=goods.quantity%></span></p>
+                       <p class="center">
+                         <span class="price">￥<%=goods.price%></span>
+                         <span class="number">/ <%=goods.unit%><%=goods.unit_name%></span>
+                       </p>
+                       <p class="bottom"> 合计：￥<%= (goods.price * goods.quantity).toFixed(2) %>
+                       <% if(order_status == 2) { %>
+                         <a class="btn-cancel-order">取消订单</a></p>
+                       <% } %>
+                   </div>
+               </div>
+               <% }) %>
+               <p class="he-myorder-total">
+                   合计：￥<%=paid_money%>
+                   <span class="he-orderdet-received"></span>
+               </p>
+               <%
+                 })
+               %>
+           </div>
+          <div class="childcontent2" style="display:none">
+            <ul class="logistics-lists">
+                <li>
+                    物流跟踪
+                </li>
+                <li>
+                    <%
+                        var index = 0;
+                        var stateClsName = "", circleClsName = "circle-ico";
+                        _.each(order_logs,function(log){
+                          stateClsName = index++ > 0 ? "" : "highlight";
+                          circleClsName = index > 1 ? "circle-ico" : "big-circle-ico";
+                    %>
+                        <div class="state-process <%=stateClsName%>">
+                            <p>【<%=log.status_name%>】<%=log.desc%></p>
+                            <p class="last-p"><%=log.create_time%></p>
+                            <div class="<%=circleClsName%>"></div>
+                        </div>
+                    <% }) %>
+                </li>
+            </ul>
+           </div>
+     </div>
+   </div>
+</script>

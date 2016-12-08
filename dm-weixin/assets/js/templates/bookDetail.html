@@ -1,0 +1,72 @@
+<div class="he-cooind-answer">
+    <div class="he-header">
+        <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+        <p class="he-header-center"><%=result.name%></p>
+    </div>
+    <div class="book-detail-pic">
+        <img src="<%=result.detail_pic%>" alt="">
+    </div>
+    <div class="he-cooind-top">
+        <p class="question"><%=result.name%></p>
+        <!--<p class="number"><%=result.selected_count%>人收藏</p> -->
+        <p class="text"><%=result.short_intro%></p>
+    </div>
+
+    <ul class="he-cooind-ingredients">
+        <li class="question">主料</li>
+
+<%
+    _.each(result.foodmaterials, function(item) {
+%>
+            <li data-id="<%=item.goods_id%>" class="frame goods-item">
+                <div class="details">
+                    <img class="left" src="<%=item.pic%>" alt=""/>
+                    <div class="right">
+                        <p class="top"><%=item.name%></p>
+                        <p class="center"><%=item.unit%><%=item.unit_name%> </p>
+                        <p class="bottom">
+                            <span class="money"><%=item.price%>元</span>
+                            <span class="number">/400g</span>
+                        </p>
+                        <img data-id="<%=item.goods_id%>" class="cart-icon" src="assets/img/Cart@3x.png" alt=""/>
+                    </div>
+                </div>
+            </li>
+<%
+        });
+%>
+    </ul>
+    <table class="he-cooind-tb">
+        <tr>
+            <caption>辅料</caption>
+        </tr>
+    <%
+        var i = 0;
+        _.each(result.ingredients_lists, function(item) {
+            i++;
+            if (i % 2 != 0) {
+    %>
+            <tr>
+    <%
+            }
+    %>
+                <td><%=item.name%> <span><%=item.quantity%></span></td>
+    <%
+            if (i % 2 == 0) {
+    %>
+            </tr>
+    <%
+            }
+        });
+    %>
+    </table>
+    <div class="he-tiao"></div>
+    <div class="he-cooind-step"> 步骤 <img src="assets/img/xiala_icon@3x.png" alt=""/></div>
+    <div class="he-intro">
+        <%=result.intro%>
+    </div>
+</div>
+<div class="he-cooind-btn">
+   <p class="left btn-hirecook">雇佣大厨</p>
+   <p class="right btn-cook-cart"><img src="assets/img/Cart@3x.png" alt=""/>菜篮子</p>
+</div>

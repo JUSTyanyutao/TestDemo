@@ -1,0 +1,83 @@
+
+<div class="he-orset-answer">
+    <div class="he-header">
+        <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+        <p class="he-header-center">订单结算</p>
+    </div>
+    <div class="he-orset-list">
+        <img src="assets/img/right.png" alt=""/>
+        <div class="address-container">
+            <div class="data">
+                <p class="left">收 &nbsp;货 &nbsp;人:</p>
+                <p class="right"> <span></span></p>
+            </div>
+            <div class="data">
+                <p class="left">收货地址:</p>
+                <p class="right"></p>
+            </div>
+            <div class="data">
+                <p class="left">当前菜场:</p>
+                <p class="right current-market"></p>
+            </div>
+        </div>
+        <div class="share">
+            <p>共有 <span class="number goods-number">0</span>个商品<span class="total"> 合计: <span class="number total-price">￥0.00</span> </span></p>
+        </div>
+    </div>
+    <ul class="he-orset-center">
+        <li class="choose-time">
+            <i class="time"></i> &nbsp;配送时间
+            <img class="right" src="assets/img/right.png" alt=""/>
+            <span class="center"></span>
+        </li>
+        <li class="btn-coupon">
+            <i class="voucher"></i> &nbsp;使用优惠券
+            <img class="right" src="assets/img/right.png" alt=""/>
+            <span class="center">未使用</span>
+        </li>
+        <li class="he-modadd-default" style="margin-top: 0;">
+            <i class="deductible"></i> &nbsp;可用 <span class="points">0</span> 点积分抵扣 <span class="points-money">0</span> 元
+            <span class="status"></span>
+        </li>
+    </ul>
+    <ul class="he-orset-center">
+        <li>
+            <i class="frozen"></i> &nbsp;冻结金额
+            <span class="center frozen-money">￥0.00</span>
+        </li>
+        <li>
+            <i class="balance"></i> &nbsp;我的余额 <span class="balance-money">￥0.00</span>
+            <button class="he-orset-btn">充值</button>
+        </li>
+        <li>
+            <i class="message"></i> &nbsp;买家留言
+            <input class="he-orset-inp" type="text" id='comment' placeholder="有什么需要叮嘱的呢？"/>
+        </li>
+    </ul>
+    <ul class="he-orset-footer">
+        <li  class="total">商品总计 <span class="total-price">￥0.00</span></li>
+        <li  class="total">优惠金额 <span class="discount-money">￥0.00</span></li>
+        <li  class="total">运费 <span class="freight-money">￥0.00</span></li>
+        <li  class="total" style="text-align:center;background-color:#B3EBBB">订单满49免3元运费 </li>
+    </ul>
+    <div class="he-orset-total">
+        支付金额: <span class="number actual-money">￥0.00</span> <button class="purchase submit">确定购买</button>
+    </div>
+
+</div>s
+
+
+<script id="address-template" type="text/template">
+    <div class="data">
+        <p class="left">收 &nbsp;货 &nbsp;人:</p>
+        <p class="right"><%=result.consignee%> <span><%=result.mobile%></span></p>
+    </div>
+    <div class="data">
+        <p class="left">收货地址:</p>
+        <p class="right"><%=result.province_name%> <%=result.city_name%> <%=result.district_name%> <%=result.street_address%></p>
+    </div>
+    <div class="data">
+        <p class="left">当前菜场:</p>
+        <p class="right current-market"><%=result.market_name%></p>
+    </div>
+</script>

@@ -1,0 +1,63 @@
+<div class="he-menuind-answer">
+    <div class="he-header">
+        <p class="he-book-left banquet btn-share">宴客</p>
+        <div class="he-menuind-eject">
+            <p class="share share-menu">分享菜单</p>
+            <p class="my menus">我的菜单</p>
+            <p class="my menus-participate">我参加的</p>
+            <img src="assets/img/tankuang@3x.png" alt=""/>
+        </div>
+        <p class="he-header-center">菜谱</p>
+        <p class="he-header-right he-book-search  searching"></p>
+
+    </div>
+    <div class="ui-tab">
+        <!-- 菜谱分类 -->
+        <ul class="ui-tab-nav ui-border-b tab-cook-category text"></ul>
+        <!-- 菜谱列表 -->
+        <ul class="ui-tab-answer" style="width:300%"></ul>
+    </div>
+</div>
+
+<script id="category-template" type="text/template">
+<%
+    _.each(result, function(item) {
+%>
+        <li data-id="<%=item.id%>"><%=item.name%><span class="circle"></span></li>
+<%
+    });
+%>
+</script>
+
+<script id="book-list-template" type="text/template">
+<%
+    if (result.total > 0) {
+%>
+    <ul class="he-menu-list">
+    <%
+        _.each(result.data, function(item) {
+    %>
+            <li data-id="<%=item.id%>" class="figure book-item">
+                <img class="bottom" src="<%=item.pic%>" alt=""/>
+                <img class="center" src="assets/img/mengban@3x.png" alt=""/>
+                <div class="top">
+                    <p class="name"><%=item.name%></p>
+                    <p class="number">已有<%=item.selected_count%>人选择 &nbsp;&nbsp;&nbsp; </p>
+                    <!--<p class="number">已有<%=item.selected_count%>人选择 &nbsp;&nbsp;&nbsp; <%=item.favorite_count%>人收藏</p>
+                     -->
+                </div>
+            </li>
+    <%
+        });
+    %>
+    </ul>
+<%
+    } else {
+%>
+    <div style="width: 100%; text-align:center; margin-top: 50px;">暂无菜谱</div>
+<%
+    }
+
+%>
+
+</script>

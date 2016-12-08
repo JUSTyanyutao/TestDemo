@@ -1,0 +1,37 @@
+<div class="he-header">
+    <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+    <p class="he-header-center">分享菜谱</p>
+</div>
+
+<div class="he-shamenu-top">
+    <img src="assets/img/5.png" alt=""/>
+    <div class="right">
+        <p class="question">分享菜谱让朋友来点单</p>
+        <%
+            var today = new Date();
+        %>
+        <p class="time"><%=today.getFullYear()%>-<%=today.getMonth()+1%>-<%=today.getDate()%></p>
+    </div>
+</div>
+
+<div class="he-shamenu-center">
+    <p class="name">宴会名称 <input type="text" id="question" placeholder="输入您的宴会名称"/></p>
+    <p class="time">宴会开始时间 <input type="text" readonly="readonly" id="dinnerTime" placeholder="输入您宴会开始时间"/></p>
+</div>
+
+<div class="btn-share-book">创建宴请</div>
+
+<!-- <ul class="he-shamenu-list">
+    <li class="share-weixin">
+        <img src="assets/img/weixin@3x.png" alt=""/>分享给微信好友
+    </li>
+    <li class="share-timeline">
+        <img src="assets/img/pengyouquan@3x.png" alt=""/>分享至微信朋友圈
+    </li>
+    <li class="share-qq">
+        <img src="assets/img/QQ@3x.png" alt=""/>分享给QQ好友
+    </li>
+    <li class="share-zone">
+        <img src="assets/img/Qzone@3x.png" alt=""/>分享至QQ空间
+    </li>
+</ul> -->

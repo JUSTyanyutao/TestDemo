@@ -1,0 +1,115 @@
+<div class="he-header">
+    <p class="he-header-center">菜篮子</p>
+</div>
+
+<div class="he-shop_cart-top">
+   <button class='btn-cooks'> + 添加大厨到家服务</button>
+</div>
+
+<div class="cart-container"></div>
+
+
+<div class="he-shop_cart-total">
+    合计：<span class="total-price">￥0.00</span> <button class="btn-bill">结算</button>
+</div>
+
+<script id="cart-template" type="text/template">
+
+<%
+	if (_.size(result.cooks) > 0) {
+%>
+	<div class="he-shop_cart-question">
+	    <i class="bg"></i>
+	    <span class="home">大厨到家</span>
+	    <span class="more">更多</span>
+	</div>
+
+<%
+	_.each(result.cooks, function(item) {
+%>
+		<div class="he-shop_cart-details">
+		    <img class="left" src="<%=item.avatar==''?'assets/img/32.png':item.avatar%>" alt=""/>
+		    <div class="right">
+		        <p class="name"><%=item.name%></p>
+		        <p class="price">
+		            <span class="number"><%=item.price%>元</span> <span class="hour">/1小时</span>
+		        </p>
+		        <div class="cart">
+		            <i data-id="<%=item.id%>" class="reduce btn-sub" data-type="2"></i>
+		            <div data-price="<%=item.price%>" data-id="<%=item.id%>" class="number item-number"><%=item.quantity%></div>
+		            <i data-id="<%=item.id%>" class="plus btn-plus" data-type="2"></i>
+		        </div>
+		    </div>
+		</div>
+<%
+	});
+	} 
+%>
+
+
+<%
+
+	if (_.size(result.merchants) > 0) {
+		_.each(result.merchants, function(merchant) {
+%>
+		<div class="he-shop_cart-question">
+		    <i class="name"></i>
+		    <span class="home"><%=merchant.name%></span>
+		</div>	
+		<ul class="he-shop_cart-list">
+		<%
+			_.each(merchant.goods, function(item) {
+		%>
+			<li>
+		        <div class="he-shop_cart-details">
+		            <img class="left" src="<%=item.pic==''?'assets/img/21.png':item.pic%>" alt=""/>
+		            <div class="right">
+		                <p class="name"><%=item.goods_name%></p>
+		               <!-- <%
+		                	if (item.nature >= 2) {
+		                %>
+		                    <span class="special-mark">
+		                    活动商品，第二件恢复原价¥<%=item.original_price.toFixed(2)%>
+		                    /<%=item.original_unit+item.original_unit_name%></span>
+		                <%
+		                	}
+		                %>-->
+		                <%
+		                	if (item.nature == 3) {
+		                %>
+		                    <span class="special-mark">
+		                    超出限购的商品，不再享受特价
+		                    </span>
+		                <%
+		                	}
+		                %>
+		                <p class="price">
+		                    <span class="number"><%=item.price.toFixed(2)%>元</span> <span class="hour">/<%=item.unit%><%=item.unit_name%></span>
+		                </p>
+		                <div class="cart">
+		                    <i data-id="<%=item.goods_id%>" class="reduce btn-sub" data-type="1"></i>
+		                    <div data-price="<%=item.price%>" data-id="<%=item.goods_id%>" class="number item-number"><%=item.quantity%></div>
+		                    <i data-id="<%=item.goods_id%>" class="plus btn-plus" data-type="1"></i>
+		                </div>
+		            </div>
+		        </div>
+		    </li>
+		<%
+			});
+		%>
+		</ul>	
+<%
+		});
+%>
+		<div style="height: 125px;"></div>
+<%
+	}
+
+	if (_.size(result.cooks) <= 0 && _.size(result.merchants) <= 0) {
+%>
+		<div style="width: 100%; margin-top: 60px; text-align: center;">您的菜篮子是空的...</div>
+<%
+	}
+
+%>
+</script>

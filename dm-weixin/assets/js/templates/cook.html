@@ -1,0 +1,72 @@
+
+<div class="he-header">
+    <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+    <p class="he-header-center">大厨详情</p>
+</div>
+<div class="he-header-bg">
+    <img src="assets/img/cook-touxiang@3x.png" data-echo="<%=result.avatar%>" alt=""/>
+    <p class="name"><%=result.name%></p>
+
+    <div class="star-container small margin-top-30" style="display: table;margin: auto;">
+        <i class="star <%=(result.star/10 >= 1 ? 'selected' : '')%>"></i>
+        <i class="star <%=(result.star/8 >= 1 ? 'selected' : '')%>"></i>
+        <i class="star <%=(result.star/6 >= 1 ? 'selected' : '')%>"></i>
+        <i class="star <%=(result.star/4 >= 1 ? 'selected' : '')%>"></i>
+        <i class="star <%=(result.star/2 >= 1 ? 'selected' : '')%>"></i>
+    </div>
+</div>
+
+<div class="he-details-int">
+    <img src="assets/img/Profile@3x.png" alt=""/><%=result.age%>岁
+    <span>|</span> <%=result.birth_place%> <span>|</span> <%=result.is_married==1?'已婚':'未婚'%> <span>|</span> <%=result.language%></div>
+<div class="he-details-body">
+    <%=result.intro%>
+</div>
+<div class="he-details-label btn-comments">
+    <%
+        _.each(result.labels, function(item) {
+    %>
+            <span class="green"><%=item.label_name%>(<%=item.quantity%>)</span>
+    <%
+        });
+    %>
+    <span class="evaluate">评价 ></span>
+</div>
+<ul class="he-details-answer">
+    <li class="question">拿手菜</li>
+<%
+    _.each(result.cook_books, function(item) {
+%>
+        <li class="he-details-list cookbook-item" data-id="<%=item.id%>">
+            <img class="img" src="<%=item.pic%>" alt=""/>
+            <img class="mask" src="assets/img/mengban@3x.png" alt=""/>
+            <div class="right">
+                <p class="top"><%=item.name%></p>
+                <p class="bottom">已有<%=item.selected_count%>人选择</p>
+            </div>
+        </li>
+<%
+    });
+%>
+</ul>
+
+<div class="he-details-mask cook-panel">
+    <div class="bottom">
+         <div class="choice"><span class="btn-cancel">取消</span>选择大厨上门时间</div>
+         <div class="price">大厨小时价：<span class="left"><%=result.price%>元 <span class="right">/小时</span></span></div>
+         <div class="time">
+            大厨上门时间：
+            <input value="" class="startTime" readonly="readonly" placeholder="请选择上门时间" name="startTime" id="startTime" type="text">
+        </div>
+         <div class="hour">
+             <div class="hour-option" data-hour="1">1小时</div>
+             <div class="hour-option selected" data-hour="2">2小时</div>
+             <div class="hour-option" data-hour="3">3小时</div>
+             <div class="hour-option" data-hour="5">5小时</div>
+             <div class="hour-option" data-hour="24">1天</div>
+         </div>
+        <button class="btn-cook btn-confirm-cook">确认雇佣大厨</button>
+    </div>
+</div>
+
+<button class="btn-cook btn-hire-cook">我要雇佣大厨</button>

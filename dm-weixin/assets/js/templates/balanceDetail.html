@@ -1,0 +1,85 @@
+<div class="basket-index" style="background:#efefef">
+    <div id="cart-list"></div>
+</div>
+
+<script id="tpl-goods-list" type="text/template">
+	<%
+	    if (_.size(data.carts) > 0) {
+	%>
+	    <div class="basket-infull">
+	        <ul class="goods-list">
+	<%
+	    _.each(data.carts, function(item) {
+	%>
+	            <li>
+	                <div class="img-wrap"><img src="assets/images/goods_thumb.png" data-echo="<%=item.pic%>" class="img"></div>
+	                <div class="basket-answer">
+	                    <h4><%=item.goods_name%><i class="trash" data-id="<%=item.goods_id%>"></i></h4>
+	                    <%
+		                	if (item.nature >= 2) {
+		                %>
+		                    <span class="special-mark">活动商品，第二件恢复原价¥<%=item.original_price%>/<%=item.original_unit+item.original_unit_name%></span>
+		                <%
+		                	}
+		                %>
+	                    <p>¥<%=item.price.toFixed(2)%>／<%=item.unit%><%=item.unit_name%></p>
+	                    <div class="price-number">
+	                        <p class="price sum-price" data-sum-price="<%=item.sum_price%>">¥<%=item.sum_price.toFixed(2)%></p>
+	                        <div class="number">
+	                            <span class="number-border btn-sub" data-id="<%=item.goods_id%>">-</span>
+	                            <span class="number-number" data-nature="<%=item.nature%>" data-original-unit-name="<%=item.original_unit_name%>" data-original-unit="<%=item.original_unit%>" data-original-price="<%=item.original_price%>" data-current-price="¥<%=item.price%>/<%=item.unit%><%=item.unit_name%>" data-name="<%=item.goods_name%>" data-pic="<%=item.pic%>" data-id="<%=item.goods_id%>" data-price="<%=item.price%>"><%=item.quantity%></span>
+	                            <span class="number-fill btn-plus" data-id="<%=item.goods_id%>">+</span>
+	                        </div>
+	                    </div>
+	                </div>
+	            </li>
+	<%
+	        });
+	%>
+	        </ul>
+	        <div class="balance">
+	            <p><span class="balance-price">¥<%=data.total_price.toFixed(2)%></span></p>
+	            <div><button class="button btn-bill">共<%=data.count%>件</button></div>
+	        </div>
+	    </div>
+	<%
+	    }
+	%>
+
+	<%
+	    if (false) {
+	%>
+	    <div class="basket-infull">
+	        <ul class="goods-list">
+	<%
+	    _.each(goods, function(item) {
+	%>
+	            <li>
+	                <div class="img-wrap"><img src="<%=item.pic%>" class="img"></div>
+	                <div class="basket-answer">
+	                    <h4><%=item.name%><i class="trash" data-id="<%=item.id%>"></i></h4>
+	                    <p><%=item.currentPrice%></p>
+	                    <div class="price-number">
+	                        <p class="price sum-price" data-sum-price="<%=item.sumPrice%>">¥<%=item.sumPrice.toFixed(2)%></p>
+	                        <div class="number">
+	                            <span class="number-border btn-sub" data-id="<%=item.id%>">-</span>
+	                            <span class="number-number" data-currentPrice="<%=item.currentPrice%>" data-name="<%=item.name%>" data-pic="<%=item.pic%>" data-id="<%=item.id%>" data-price="<%=item.price%>"><%=item.quantity%></span>
+	                            <span class="number-fill btn-plus" data-id="<%=item.id%>">+</span>
+	                        </div>
+	                    </div>
+	                </div>
+	            </li>
+	<%
+	        });
+	%>
+	        </ul>
+	        <div class="balance">
+	            <p><span class="balance-price">¥<%=sum.toFixed(2)%></span></p>
+	            <div><button class="button btn-bill">共<%=total%>件</button></div>
+	        </div>
+	    </div>
+	<%
+	    }
+	%>
+	    
+</script>

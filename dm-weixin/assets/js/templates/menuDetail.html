@@ -1,0 +1,65 @@
+<div class="he-header">
+    <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+    <p class="he-header-center">菜单详情</p>
+</div>
+
+<div class="he-menudet-top">
+
+    <p class="question"><%=result.question%></p>
+    <p class="number">共有<%=result.total_count%>道菜</p>
+    <%
+        if (type != 'join') {
+    %>
+        <span class="menu-delete">删除</span>
+    <%
+        }
+        if (result.status == 1) {
+    %>
+        <!-- <p class="tips">温馨提示：将此页面分享给朋友，即可让朋友来点菜啦！</p> -->
+    <%
+        }
+    %>
+    
+</div>
+<div class="he-menudet-time">
+    <%=result.start_time%>
+    <span class="rise">起</span>
+    <%=result.dinner_time%>
+    <span class="stop">止</span>
+</div>
+
+<%
+    _.each(result.cookbook_members, function(member) {
+%>
+        <div class="he-menudet-details">
+            <img class="left" src="<%=member.avatar_url%>" alt=""/>
+            <div class="right">
+                <p class="name"><%=member.nickname%></p>
+                <p class="number">共选择了<%=member.count%>道菜</p>
+            </div>
+            <div class="top">
+            <%
+                _.each(member.bookcook_selected, function(book) {
+            %>
+                    <div class="one book-item" data-id="<%=book.cookbook_id%>">
+                        <img src="<%=book.pic%>" alt=""/>
+                        <span><%=book.cookbook_name%></span>
+                    </div>
+            <%
+                });
+            %>
+                <div class="clear"></div>
+            </div>
+        </div>
+<%
+    });
+    if (_.size(result.cookbook_members) <= 0) {
+%>
+    <div style="text-align:center; width: 100%; margin-top: 50px; line-height:20px; color: #999; font-size: .8em;">温馨提示：点击右上角的分享按钮，将页面分享给朋友，即可让朋友来点菜啦！</div>
+<%
+    }
+%>
+
+<!-- <div class="mask-question" <%if (type == 'join') {%>style="display:none;"<%}%>>
+    <img src="assets/img/share_menu.png" alt=""/>
+</div> -->

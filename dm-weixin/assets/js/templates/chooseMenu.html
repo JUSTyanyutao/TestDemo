@@ -1,0 +1,106 @@
+<div class="he-header">
+    <p class="he-header-center menu-question">菜谱</p>
+    <p class="he-header-right btn-next">下一步</p>
+</div>
+
+<div class="ui-tab">
+    <ul class="ui-tab-nav ui-border-b tab-cook-category"></ul>
+    <ul class="ui-tab-answer" style="width:300%">
+        <!-- <li class="current">
+
+            <ul class="he-menu-list">
+                <li class="figure">
+                    <img class="bottom" src="../../img/1.png" alt=""/>
+                    <img class="center" src="../../img/mengban@3x.png" alt=""/>
+                    <div class="top">
+                        <p class="name">土豆蒸糯米</p>
+                        <p class="number">已有2340人选择 &nbsp;&nbsp;&nbsp; 380人收藏</p>
+                    </div>
+                    <img class="hook" src="../../img/biaoqian@3x.png" alt=""/>
+                </li>
+                <li class="figure">
+                    <img class="bottom" src="../../img/2.png" alt=""/>
+                    <img class="center" src="../../img/mengban@3x.png" alt=""/>
+                    <div class="top">
+                        <p class="name">干锅大肠</p>
+                        <p class="number">已有2340人选择 &nbsp;&nbsp;&nbsp; 380人收藏</p>
+                    </div>
+                </li>
+                <li class="figure">
+                    <img class="bottom" src="../../img/3.png" alt=""/>
+                    <img class="center" src="../../img/mengban@3x.png" alt=""/>
+                    <div class="top">
+                        <p class="name">黄金土豆饼</p>
+                        <p class="number">已有2340人选择 &nbsp;&nbsp;&nbsp; 380人收藏</p>
+                    </div>
+                    <div class="mask">
+                        <img src="../../img/sure@3x.png" alt=""/>
+                    </div>
+                </li>
+                <li class="figure">
+                    <img class="bottom" src="../../img/4.png" alt=""/>
+                    <img class="center" src="../../img/mengban@3x.png" alt=""/>
+                    <div class="top">
+                        <p class="name">土豆蒸糯米</p>
+                        <p class="number">已有2340人选择 &nbsp;&nbsp;&nbsp; 380人收藏</p>
+                    </div>
+                </li>
+            </ul>
+
+        </li> -->
+    </ul>
+</div>
+
+<script id="category-template" type="text/template">
+<%
+    console.info(result);
+    _.each(result, function(item) {
+%>
+    <li data-id="<%=item.id%>"><%=item.name%><span class="circle"></span></li>
+<%
+    });
+%>
+</script>
+
+<script id="book-list-template" type="text/template">
+<%
+    if (data.result.total > 0) {
+%>
+    <ul class="he-menu-list">
+    <%
+        _.each(data.result.data, function(item) {
+    %>
+            <li data-id="<%=item.id%>" data-name="<%=item.name%>" data-pic="<%=item.pic%>" class="figure book-item">
+                <img class="bottom" src="<%=item.pic%>" alt=""/>
+                <img class="center" src="assets/img/mengban@3x.png" alt=""/>
+                <div class="top">
+                    <p class="name"><%=item.name%></p>
+                    <p class="number">已有<%=item.selected_count%>人选择 &nbsp;&nbsp;&nbsp; <%=item.favorite_count%>人收藏</p>
+                </div>
+                <%
+                if (item.has_selected > 0) {
+                %>
+                    <img class="hook" src="assets/img/biaoqian@3x.png" alt=""/>
+                <% 
+                } else if (ids.indexOf(item.id) >= 0) {
+                %>
+                    <div class="mask"><img src="assets/img/sure@3x.png" alt=""/></div>
+                <%
+                }
+                %>
+                
+            </li>
+    <%
+        });      
+    %>
+    </ul>
+<%
+    } else {
+%>
+    <div style="width: 100%; text-align:center; margin-top: 50px;">暂无菜谱</div>
+<%
+    }
+
+%>
+    
+</script>

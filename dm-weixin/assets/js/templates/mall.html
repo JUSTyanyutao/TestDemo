@@ -1,0 +1,97 @@
+<div class="he-header">
+    <p class="he-header-center">逛菜场</p>
+    <p class="he-header-right btn-search searching"></p>
+</div>
+
+<div class="left-panel">
+    <div class="panel-group" id="myAccordion"></div>
+</div>
+
+<div class="right-container">
+    <div class="he-marind-top">
+        <select id="third-category" class="left">
+            <option value="">品种</option>
+        </select>
+        <select id="hot-sort" class="right">
+            <option value="ASC">热门 ↑</option>
+            <option value="DESC">热门 ↓</option>
+        </select>
+    </div>
+
+    <ul class="he-marind-list"></ul>
+</div>
+
+
+
+<!-- 左侧菜单模板 -->
+<script id="tpl-goods-category" type="text/template">
+    <div class="panel ">
+        <div class="panel-heading category-item btn-history">
+            <span href="javascript:void(0)" class="panel-question">历史商家</span>
+        </div>
+    </div>
+
+<%
+    if (_.size(result) > 0) {
+        _.each(result, function (item) {
+%>
+            <div class="panel ">
+                <div class="panel-heading category-item" data-id="<%=item.id%>">
+                    <span data-toggle="collapse" data-parent="#myAccordion" class="panel-question"><%=item.name%></span>
+
+                </div>
+                <div class="collapse panel-collapse">
+                    <div class="panel-body">
+                        <ul class="he-list">
+                        <%
+                            _.each(item.childs, function (child) {
+                        %>
+                                <li class="second-category" data-id="<%=child.id%>"><%=child.name%></li>
+                        <%
+                                localStorage.setItem('third-category-' + child.id, JSON.stringify(child.childs));
+                            });
+                        %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+<%
+        });
+    }
+%>
+
+</script>
+
+<!-- 分类商品列表模板 -->
+<script id="tpl-goods-items" type="text/template">
+<%
+    if (_.size(result.data) > 0) {
+        _.each(result.data, function(item) {
+%>
+            <li data-id="<%=item.id%>" class="center goods-item">
+                <div class="details">
+                    <img class="left" src="assets/img/mall@3x.png" data-echo="<%=item.thumb%>" alt=""/>
+                    <div class="right">
+                        <p class="question"><%=item.name%></p>
+                        <p class="name"><%=item.merchant_name%> &nbsp;</p>
+                        <p class="price"><%=item.price%>元 <span>/<%=item.unit%><%=item.unit_name%></span></p>
+                        <div class="choice">
+                            <img data-id="<%=item.id%>" class="reduce btn-decrease <%=item.shop_cart_count==0?'eh-hide':''%>" src="assets/img/minus@3x.png" alt="-"/>
+                            <span class="number <%=item.shop_cart_count==0?'eh-hide':''%>"><%=item.shop_cart_count%></span>
+                            <img data-id="<%=item.id%>" class="plus btn-increase" src="assets/img/plus_pre@3x.png" alt="+"/>
+                        </div>
+                    </div>
+                </div>
+            </li>
+<%
+        });
+    } else {
+%>
+        <li style="text-align:center;margin: -10px auto;border:0;">
+            <div class="no-goods">未查询到商品</div>
+        </li>
+<%
+    }
+%>
+
+</script>

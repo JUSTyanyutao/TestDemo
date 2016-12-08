@@ -1,0 +1,26 @@
+<section>
+    <%
+        _.each(result.list, function(item) {
+    %>
+         <dl class="question-order">
+            <dt class="ques-dt">
+                <img src="<%=item.pic%>" class="ques-icon">
+                <%=item.question%>
+                <i class="arrow-details"></i>
+            </dt>
+            <dd class="ques-dd hide">
+                <div class="ques">
+                    <%
+                        _.each(item.childrens, function(child) {
+                    %>
+                        Q:<%=child.question%>？<br/>A:<%=child.answer%><br/><br/>
+                    <%        
+                            });
+                    %>
+                </div>
+            </dd>
+        </dl>
+    <%      
+            });
+    %>
+</section>

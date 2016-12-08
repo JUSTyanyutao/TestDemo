@@ -1,0 +1,53 @@
+<div class="choose-box-address">
+    <div class="box-address">
+        <div class="position-search">
+            <button type="button" class="search-button"></button>
+            <div class="search-input-wrap">
+                <input type="text" name="address" id="address" placeholder="站点名称搜索">
+            </div>
+        </div>
+    </div>
+    <div class="box-nearby-position">
+        <h4 class="station-list-name">附近的站点</h4>
+        <ul id="cabinetContainer">
+            <!-- <li><span class="positionnum">500m</span>海德-悦澜湾<i class="idle">空闲</i></li>
+            <li><span class="positionnum">500m</span>海尚一品<i class="full">满</i></li>
+            <li><span class="positionnum">500m</span>海德-悦澜湾<i class="full">满</i></li> -->
+        </ul>
+    </div>
+    <div class="prompt">
+        <img src="/assets/images/prompt.png">
+        <span>温馨提示:请选择本小区站点，以免送达延误</span>
+    </div>
+</div>
+
+<script id="cabinet-template" type="text/template">    
+<%
+    if (_.size(result.list)) {
+        _.each(result.list, function(item) {
+%>
+        <li class="cabinet-item" data-rest="<%=item.box_rest%>" data-id="<%=item.station_id%>" data-name="<%=item.station_name%>" data-address="<%=item.address%>">
+            <span class="positionnum">
+        <%
+            if (item.distance >= 1) {
+        %>
+            <%=item.distance%>千米
+        <%
+            } else {
+        %>
+            <%=parseInt(item.distance*1000)%>米
+        <%
+            }
+        %>
+            </span>
+            <%=item.station_name%><%=item.box_rest>0?'<i class="idle">空闲</i>':'<i class="full">满</i>'%>
+        </li>    
+<%
+        });
+    } else {
+%>
+        <li>未查询到站点信息</li>
+<%
+    }
+%>
+</script>

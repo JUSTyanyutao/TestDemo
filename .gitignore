@@ -1,0 +1,13 @@
+
+.idea/*
+build/*
+out/*
+modules/build/
+modules/core/build/
+modules/model/build/
+modules/service/build/
+dm-api/build/
+dm-cms/build/
+/dm-cms/src/test/
+/.idea/
+/dm-cms/src/main/resources/

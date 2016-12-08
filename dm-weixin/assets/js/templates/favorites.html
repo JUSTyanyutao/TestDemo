@@ -1,0 +1,24 @@
+<div class="he-header">
+    <p class="he-header-left">
+        <img src="assets/img/nav_back@3x.png" alt=""/>
+    </p>
+    <p class="he-header-center">我的收藏</p>
+</div>
+<ul class="he-collection-list">
+    <%
+      _.each(data,function(item){
+    %>
+    <li data-id="<%=item.fav_id%>">
+        <div class="details">
+            <img class="left" src="<%=item.pic%>" alt=""/>
+            <div class="right">
+                <p class="name"><%=item.name%></p>
+                <p class="number"><%=item.name%>人购买</p>
+                <p class="address"><%=item.market_name%></p>
+            </div>
+        </div>
+    </li>
+    <%
+        })
+    %>
+</ul>

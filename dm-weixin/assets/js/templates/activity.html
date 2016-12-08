@@ -1,0 +1,16 @@
+<div class="he-header">
+    <p class="he-header-left">
+       <img  src="assets/img/nav_back@3x.png" alt=""/>
+    </p>
+    <p class="he-header-center">活动</p>
+    <img class="he-header-bottom" src="assets/img/111.png" alt=""/>
+</div>
+<div id="activity-container" class="he-activity-answer">
+</div>
+<script id="item-template" type="text/template">
+		<%
+				_.each(result.data,function(item){
+		%>
+    <img src="assets/img/placeholder_activity_list.png" data-echo="<%=item.pic%>" alt="" data-id="<%=item.id%>"/>
+    <% }) %>
+</script>

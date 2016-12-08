@@ -1,0 +1,34 @@
+<div class="he-header">
+    <p class="he-header-left">
+        <img src="assets/img/nav_back@3x.png" alt=""/>
+    </p>
+    <p class="he-header-center">我的优惠券</p>
+</div>
+<%
+    if (total > 0) {
+%>
+<ul class="he-coupon-question">
+    <%
+      _.each(data,function(item){
+    %>
+      <li class="coupon-item" data-name="<%=item.question%>" data-id="<%=item.id%>">
+          <p class="amount">￥<%=item.denomination%></p>
+          <div class="right">
+              <p class="name"><%=item.question%></p>
+              <p class="rule"><%=item.desc%></p>
+              <p class="time"><%=item.expire_time%></p>
+          </div>
+      </li>
+    <%
+        })
+    %>
+</ul>
+<% } else { %>
+<div class="no-coupons">
+    <div class="common-bg-wrap">
+        <img src="assets/img/default_logo.png" class="common-bg-imgbig">
+        <h4 class="common-bg-question">您还没有优惠券哦</h4>
+        <p class="common-bg-text">优惠券还是蛮多的，多关注一下活动，多拿券!</p>
+    </div>
+</div>
+<% } %>

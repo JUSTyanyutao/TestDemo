@@ -1,0 +1,53 @@
+<div id="top">
+	<div id="question">蕲农币 <span>-</span></div>
+	<span id="desc">蕲农币大用途，通过每日签到和订单评价获得更多蕲农币</span>
+</div>
+<ul id="points-container">
+	<!-- <li class="points-item">
+		<div class="number incr">+5</div>
+		<div class="label">签到</div>
+		<span class="point-date">02-16 17:54</span>
+	</li>
+	<li class="points-item">
+		<div class="number incr">+5</div>
+		<div class="label">评论奖励积分</div>
+		<span class="point-date">02-15 14:29</span>
+	</li>
+	<li class="points-item">
+		<div class="number incr">+30</div>
+		<div class="label">订单积分</div>
+		<span class="point-date">02-14 09:24</span>
+	</li>
+	<li class="points-item">
+		<div class="number">－50</div>
+		<div class="label">积分抵扣</div>
+		<span class="point-date">02-14 09:25</span>
+	</li> -->
+</ul>
+
+
+<script id="item-template" type="text/template">
+<%
+	if (_.size(member_points_list) > 0) {
+		_.each(member_points_list, function(item) {
+%>
+	<li class="points-item">
+	<%
+		if (item.use_type == 1) {
+	%>
+		<div class="number incr">+<%=item.points%></div>
+	<%
+		} else {
+	%>
+		<div class="number">-<%=item.points%></div>
+	<%
+		}
+	%>
+		<div class="label"><%=item.points_remark%></div>
+		<span class="point-date"><%=item.create_time%></span>
+	</li>
+<%
+		});
+	}
+%>
+</script>

@@ -1,0 +1,69 @@
+<div class="he-header">
+    <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+    <p class="he-header-center">大厨到家</p>
+</div>
+
+
+<%
+    if (_.size(result.history_cooks) > 0) {
+%>
+    <div class="he-chef-history">历史大厨</div>
+    <%
+        _.each(result.history_cooks, function(item) {
+
+    %>
+            <div class="he-chef-introduction cook-item" data-id="<%=item.id%>">
+                <img class="left" src="assets/img/cook-touxiang@3x.png" data-echo="<%=item.avatar%>" alt=""/>
+                <div class="right">
+                    <p class="name"><%=item.name%> <span class="he-chef-label"><%=item.cook_books[0] ? item.cook_books[0].name : "暂无"%> <span class="he-chef-triangle"></span></span></p>
+                    <p class="age"> <%=item.age%>岁 &nbsp;|&nbsp; <%=item.birth_place%></p>
+                    <p class="cuisine"> 菜系：
+                        <span><%=item.food_category%></span>
+                        <div class="star-container fl-right margin-top-30">
+                            <i class="star <%=(item.star/10 >= 1 ? 'selected' : '')%>"></i>
+                            <i class="star <%=(item.star/8 >= 1 ? 'selected' : '')%>"></i>
+                            <i class="star <%=(item.star/6 >= 1 ? 'selected' : '')%>"></i>
+                            <i class="star <%=(item.star/4 >= 1 ? 'selected' : '')%>"></i>
+                            <i class="star <%=(item.star/2 >= 1 ? 'selected' : '')%>"></i>
+                        </div>
+                    </p>
+                </div>
+            </div>
+    <%
+            });
+    %>
+<%
+    }
+%>
+
+<div class="he-chef-recommend">大厨推荐</div>
+
+<%
+    if (_.size(result.recommend_cooks.data) > 0) {
+        _.each(result.recommend_cooks.data, function(item) {
+%>
+        <div class="he-chef-introduction cook-item" data-id="<%=item.id%>">
+            <img class="left" src="assets/img/cook-touxiang@3x.png" data-echo="<%=item.avatar%>" alt=""/>
+            <div class="right">
+                <p class="name"><%=item.name%> <span class="he-chef-label"><%=item.cook_books[0] ? item.cook_books[0].name : "暂无"%> <span class="he-chef-triangle"></span></span></p>
+                <p class="age"> <%=item.age%>岁 &nbsp;|&nbsp; <%=item.birth_place%></p>
+                <p class="cuisine"> 菜系：
+                    <span><%=item.food_category%></span>
+                    <div class="star-container small fl-right margin-top-30">
+                        <i class="star <%=(item.star/10 >= 1 ? 'selected' : '')%>"></i>
+                        <i class="star <%=(item.star/8 >= 1 ? 'selected' : '')%>"></i>
+                        <i class="star <%=(item.star/6 >= 1 ? 'selected' : '')%>"></i>
+                        <i class="star <%=(item.star/4 >= 1 ? 'selected' : '')%>"></i>
+                        <i class="star <%=(item.star/2 >= 1 ? 'selected' : '')%>"></i>
+                    </div>
+                </p>
+            </div>
+        </div>
+<%
+        })
+    } else {
+%>
+    <div style="width: 100%; text-align:center; margin-top: 50px;">暂无大厨推荐</div>
+<%
+    }
+%>

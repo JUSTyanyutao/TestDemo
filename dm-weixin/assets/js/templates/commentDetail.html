@@ -1,0 +1,123 @@
+<div class="he-marcom-answer">
+    <div class="he-header">
+        <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+        <p class="he-header-center">评论</p>
+    </div>
+    <div class="he-marcom-question">
+        <p data-id="1"><span>全部</span><span id="totalComments">(0)</span></p>
+        <p data-id="2"><span>好评</span><span id="goodComments">(0)</span></p>
+        <p data-id="3"><span>中评</span><span id="middleComments">(0)</span></p>
+        <p data-id="4"><span>差评</span><span id="negativeComments">(0)</span></p>
+        <p data-id="5"><span>晒单</span><span id="baskComments">(0)</span></p>
+    </div>
+    <div class="comments-container"></div>
+
+</div>
+<script id="comment-list-template" type="text/template">
+  <%
+    var index = 0;
+    _.each(comments, function(item) {
+      if(index++ > 0) {
+  %>
+  <li class="bold-border-t" data-id="<%=item.id%>" >
+  <% } else { %>
+  <li data-id="<%=item.id%>">
+  <% } %>
+    <div class="pd-10 ov-hi br-b-1">
+        <img src="assets/images/cohead.png" class="com-headico">
+        <span><%=item.mobile%></span>
+        <span class="btn2 btn-red f-rt btn-comment-reply" >回复</span>
+    </div>
+    <div class="stars pd-10 fsize-08">
+        <% for(var i = 0; i < item.score / 2; i++) { %>
+          <i class="selected-star"></i>
+        <% } %>
+        <% for(var j = 0; j < (10 - item.score) / 2; j++) { %>
+          <i class="unselected-star"></i>
+        <% } %>
+        <span class="f-rt fsize-08"><%=item.create_time%></span>
+        <p class="font-grey mr-t-5"><span>标签:</span>
+          <% _.each(item.labels, function(label) {  %>
+            <a href="#" class="comment-btn"><%=label.name%></a>
+          <% }) %>
+        </p>
+        <p class="font-grey mr-b-0">
+            心得: <%=item.answer%>
+        </p>
+        <p class="main-color mr-b-0">
+          <% if(item.result) { %>
+            田园里: <%=item.result%>
+          <% } %>
+        </p>
+      </div>
+      <div class="ov-hi">
+          <% _.each(item.picList, function(picItem) {
+              var smallPic = picItem.pic;
+              var index = smallPic.lastIndexOf(".");
+              smallPic = smallPic.substring(0,index) + "_60x60" + smallPic.substring(index);
+          %>
+          <div class="get-img"><img src="<%=smallPic%>" data-big-src="<%=picItem.pic%>" class="banner"></div>
+          <% }) %>
+      </div>
+       <div class="font-grey mr-b-0 br-t-1">
+         <%
+          _.each(item.childs, function(child) {
+         %>
+          <p><%=child.mobile%>回复:<%=child.answer%></p>
+          <% }) %>
+        </div>
+      <% }) %>
+    </li>
+</script>
+<script id="comments-template" type="text/template">
+<%
+    if (_.size(result.data) > 0) {
+        _.each(result.data, function(item) {
+%>
+            <div class="he-marcom-details">
+                <img class="left" src="assets/img/my@2x.png" alt=""/>
+                <div class="right">
+                    <p class="name">
+                      <%=item.mobile%>
+                      <div class="star-container fl-right" style="margin-top: -20px;">
+                        <i class="star <%=(item.score/2 >= 1 ? 'selected' : '')%>"></i>
+                        <i class="star <%=(item.score/4 >= 1 ? 'selected' : '')%>"></i>
+                        <i class="star <%=(item.score/6 >= 1 ? 'selected' : '')%>"></i>
+                        <i class="star <%=(item.score/8 >= 1 ? 'selected' : '')%>"></i>
+                        <i class="star <%=(item.score/10 >= 1 ? 'selected' : '')%>"></i>
+                    </div>
+                    </p>
+                    <p class="time"><%=item.create_time%>  &nbsp;&nbsp; </p>
+                </div>
+                <p class="evaluate"><%=item.answer%></p>
+            <%
+                if (_.size(item.picList) > 0) {
+            %>
+                    <p class="figure">
+            <%
+                    _.each(item.picList, function(pic) {
+            %>
+                        <img src="<%=pic.pic%>" alt=""/>
+            <%
+                    })
+            %>
+                    </p>
+            <%
+                }
+
+                if (!_.isEmpty(item.result)) {
+            %>
+                <p class="reply"><span>店主有话说：</span><%=item.result%></p>
+            <%
+                }
+            %>
+            </div>
+<%
+        });
+    } else {
+%>
+        <div class="no-comments">暂无晒单</div>
+<%
+    }
+%>
+</script>

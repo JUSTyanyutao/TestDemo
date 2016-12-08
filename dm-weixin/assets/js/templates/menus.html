@@ -1,0 +1,58 @@
+<div class="he-header">
+    <p class="he-header-left"><img src="assets/img/nav_back@3x.png" alt=""/></p>
+    <p class="he-header-center">
+        <%
+            if (type == 'join') {
+        %>
+            我参加的
+        <%
+            } else {
+        %>
+            我的菜单
+        <%        
+            }
+        %>
+        
+    </p>
+</div>
+
+<%
+    if (_.size(result.data) > 0) {
+        _.each(result.data, function(item) {
+%>
+            <div class="he-mymenu-top menu-item" data-id="<%=item.id%>">
+                <p class="question"><%=item.question%></p>
+                <p class="number">
+                <%
+                    if (item.total_count <= 0) {
+                %>
+                        就快有人来点菜啦
+                <%
+                    } else {
+                %>
+                        您的朋友点了<%=item.total_count%>道菜
+                <%
+                    }
+                %>
+                </p>
+                <div class="book-pic-window">
+                    <div class="book-pic-container" style="width:<%=item.total_count*33%>vw">
+                <%
+                    _.each(item.bookcook_selected, function(book) {
+                %>
+                        <img src="<%=book.pic%>" alt="">
+                <%
+                    });
+                %>    
+                    </div>
+                </div>
+                <p class="time"><%=item.dinner_time%></p>
+            </div>
+<%
+        }); 
+    } else {
+%>
+        <div style="text-align: center; width: 100%; margin-top: 50px;">暂无菜谱</div>
+<%        
+    }
+%>
